@@ -7,8 +7,15 @@ const AddTripOptionCard = (props) =>  {
 
   const addToTrip = async (event) => {
     event.preventDefault();
-
-
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({trip_id: props.id, destination_id: destination_id})
+    };
+  fetch('http://localhost:3001/api/trips-destinations', options);
+  window.location.href = '/';
 }
 
   return (
