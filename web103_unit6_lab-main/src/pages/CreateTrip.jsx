@@ -4,7 +4,7 @@ import './CreateTrip.css'
 const CreateTrip = () => {
 
     const [trip, setTrip] = useState({id: 0, title: "", description: "", img_url: "", num_days: 0, start_date: "", end_date: "", total_cost: 0.0 })
-    
+
     const handleChange = (event) => {
         const {name, value} = event.target;
         setTrip( (prev) => {
@@ -17,9 +17,15 @@ const CreateTrip = () => {
     
     const createTrip = (event) => {
         event.preventDefault();
-
-
-        
+        const options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(trip)
+        }
+        fetch('http://localhost:3001/api/trips', options)
+        window.location.href = '/'
     }
 
 
